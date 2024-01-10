@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Knewave&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body { margin: 0;} canvas {position: absolute; width: 100%; height: 100%; }
+        #score {
+            position: unset;
+            margin: 0px;
+            font-family: "Knewave";
+            font-size: 650%;
+            
+        }
+
+        .dropbtn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content button {
+            color: black;
+            border: none;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+        }
+
+        .dropdown-content button:hover {background-color: #ddd;}
+
+        .dropdown:hover .dropdown-content {display: block;}
+
+        .dropdown:hover .dropbtn {background-color: #3e8e41;}
+    </style>
+
+
+    <canvas id="game"></canvas>
+    <script src="camera.js"></script>
+    <script src="ui.js"></script>
+    <script src="utils.js"></script>
+    <script src="./actor.js"></script>
+    <script src="./static_actor.js"></script>
+    <script src="./inputController.js"></script>
+    <script src="./geomerty.js"></script>
+    <script src="./game.js"></script>
+    <script src="./grapher.js"></script>
+
+    <div class="dropdown">
+        <button class="dropbtn">options</button>
+        <div class="dropdown-content">
+        <button onclick="setFunc(constantSpeed)">constant</button>
+        <button onclick="setFunc(squared)">squared</button>
+        <button onclick="setFunc(easeInCubic)">ease in cubic</button>
+        <button onclick="setFunc(squareRoot)">square root</button>
+        <button onclick="setFunc(quadEaseOut)">quad ease out</button>
+        <button onclick="setFunc(parabola)">parabola</button>
+        <button onclick="setFunc(triangle)">triangle</button>
+        <button onclick="setFunc(elasticOut)">elastic out</button>
+        <button onclick="setFunc(bounceOut)">bounce out</button>
+        <button onclick="setFunc(smoothstep)">smoothstep</button>
+        <button onclick="setFunc(easeOutQuint)">Ease Out quint</button>
+        <button onclick="setFunc(easeInBounce)">bounce in</button>
+        <button onclick="setFunc(elasticIn)">elastic in</button>
+        </div>
+    </div>
+</body>
+</html>
