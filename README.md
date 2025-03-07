@@ -22,14 +22,19 @@ This is one easy header just take the crown.js file from the root directory and 
 
 ### Learning guide
 
-The quickest way to get started is to read the (documentation)[] or look at the (sample projects)[]
+The quickest way to get started is to read the [documentation]() or take a look at the [sample projects]()
 
-### Executing the OS
+### Quickstart
 
-* run the ./qemu.sh command in the root of the project to boot the operating systems iso automatically
-* To manually run the Operating System try:
+* First thing you need to do get your canvas and context. After that you can create an input controller that will handle all of your keybaord input in the project
 ```
-qemu-system-i386 -m 4G -cpu max -cdrom ./path/to/the/OS.iso -boot order=dc -drive file=disc.img,media=disk  -no-shutdown -no-reboot
+const canvas = document.querySelector("#game");
+const ctx = canvas.getContext("2d");
+const i = new InputController();
+```
+* Once you have these three things you can create the game object. This game object handles the rendering, camera, and adding objects
+```
+const game = new Game(canvas, ctx, i);
 ```
 
 ## Building
