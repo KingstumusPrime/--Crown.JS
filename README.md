@@ -213,10 +213,24 @@ RectGeometry(double x, double y, String color="black")
 Line(double length, double width)
 ```
 ##### extra properties:
-* color : a string the boxs color (default black)
+* color : a string the lines color (default black)
 * end : the end of the line (stored as a [Vector Object]())
 * start : the start of the line (stored as a [Vector Object]())
 * rot : the rotation of the line
 * length : length of a line
 * width : width of a line
 
+#### CircleGeometry
+```
+CircleGeometry(double scale, String color="black")
+```
+##### extra properties:
+* color : a string of the circles color
+
+#### Sprite
+```
+Sprite(String src, Vector Object scale)
+```
+##### extra properties:
+* img : the image object tied to the sprite
+* rot : the rotatation of the sprite
