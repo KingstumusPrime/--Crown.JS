@@ -64,7 +64,9 @@ This documentation was created to outline Crown.JS and all of its features. This
 
 ### The Game Object
 
-class Game(HTMLCanvas canvas, HTMLCanvasContexet2d ctx, [InputController]() input)
+class Game(HTMLCanvas canvas, CanvasContext2d ctx, [InputController]() input)
+
+The Game object is the foundatation for Crown.JS and mainly exists to render and create actors.
 
 #### properties
 * canvas : the canvas passed too the constructor
@@ -141,4 +143,42 @@ Actor[] getGroup(String name)
 Creates a [TWEEN]() that will be automatically updated. The recomended way to handle TWEENs
 ```
 void addTween(double start, double end, TWEEN algorithm() algo, void function endFunc, double speed) 
+```
+
+### The Actor Object
+
+class Actor(String name, [Sprite]() sprite, CanvasContext2d ctx)
+
+The actor represents a [Sprite]() with a position and scale. It should not be created without using [addActor]()
+
+#### properties
+* name : the name of the sprite
+* sprite : the [Sprite]() tied to this actor
+* pos : a [Vector Object]() with x and y properties
+* rot : the rotation of the actor
+* scale : a [Vector Object]() with x and y properties
+* culled : this value is read-only and can be used to tell if the actor is being rendered
+
+#### Methouds
+
+#### scaleBy
+scales the sprite by n times. Good because it updates both the sprites scale and the scale used for collisions 
+```
+void scaleBy(double n) 
+```
+
+#### onUpdate
+Called every single frame. Has not body and is meant to be overidden
+```
+void onUpdate() 
+```
+#### onSpriteLoaded
+Similar to onUpdate() it is meant to be overidden. Called when the sprite is loaded. It is not recomended to modify the sprite at all before onSpriteLoaded is called.
+```
+void onSpriteLoaded()
+```
+#### onCreate
+This function in f will be called instantally and is more for looks than anything
+```
+onCreate(function f)
 ```
