@@ -47,12 +47,32 @@ function update(){
 
 ## Example Projects
 ### Inversion: 
-Originally created in [Scratch](https://scratch.mit.edu/projects/571692328/) and featured on the news by Hour Of Code. It is definitely the best example project to start with and probably the cleanest.
+
+Originally created in [Scratch](https://scratch.mit.edu/projects/571692328/) and featured on the news by Hour Of Code. It is definitely the best example project to start with and probably the cleanest. It can be found in index.html and main.js
+
+### grapher.js
+
+This was created as a way to showcase the smooth movement functionality of Crown.JS. Its source code is in grapher.html and grapher.js.
+
+### spacegame
+
+A little test put together to push Crown.JS to its limits. With completly dynamic graphics it shows how you can blend your own custom code with Crown.JS. While its not the best example of using Crown.JS to guide your project is a func little demo I coded up and had a lot of fun making.
 
 ## Documentation
 
-In order to build this project you will first need the custom GCC toolchain found in the releases of this repo here [RealOS Custom toolchain](https://github.com/KingstumusPrime/RealOs-Custom-Toolchain/releases/tag/Release). After that you need to run:
-```
-export PATH="$HOME/path/to/realOS/toolchain/bin:$PATH"
-```
-Once you have ran this command you should be able to simply us the build and clean scripts included in this project. If you wish to write code to run on the Operating System you also need to use the custom toolchain in place of standard GCC.
+This documentation was created to outline Crown.JS and all of its features. This is more of a reference guide. If you are looking to quick start look at [getting started]() or [example projects]().
+
+### The Game Object
+
+class Game(HTMLCanvas canvas, HTMLCanvasContexet2d ctx, [InputController]() input)
+
+#### properties
+* canvas : the canvas passed too the constructor
+* ctx : the ctx pass too the constructor
+* tweenList : a list of all active tweens
+* backgroundColor : A string that defines the background color of the canvas
+* offScreenCanvas : the canvas that static actors are drawn to. Created with the Game object
+* offCtx : the ctx of game.offScreenCanvas
+* input : the [InputController]() passed to the game
+* camera : The [Camera]() object for the game. Created with the Game object 
+
