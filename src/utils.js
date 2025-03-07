@@ -1,3 +1,5 @@
+let CROWN_RANDOM_FUNC = Math.random;
+
 function actorsCollides(act1, act2){
     return act1.pos.y + act1.scale.y > act2.pos.y && act1.pos.y < act2.pos.y + act2.scale.y
     && act1.pos.x + act1.scale.x > act2.pos.x && act1.pos.x < act2.pos.x + act2.scale.x;
@@ -9,11 +11,15 @@ function VecSub(v1, v2){
 }
 
 function randFromArr(arr){
-    return arr[Math.floor(Math.random()* arr.length)];
+    return arr[randInRange(0, arr.length)];
 }
 
 function randInRange(min, max){
-    return Math.floor(Math.random() * (max - min)) + min;
+    return Math.floor(CROWN_RANDOM_FUNC() * (max - min)) + min;
+}
+
+function randFloatInRange(min, max){
+    return CROWN_RANDOM_FUNC() * (max - min) + min;
 }
 
 // creates a variable of name with a on update event
@@ -39,8 +45,9 @@ function lerp(a, b, t){
     return a + (b-a)*t;
 }
 
+
 class TWEEN {
-    constructor(start, end, func, algo, afterFunc=undefined){
+    constructor(start, end, func, algo, afterFunc=undefined, rate=0.01){
         this.t = 0;
         this.start = start;
         this.end = end;
@@ -48,11 +55,13 @@ class TWEEN {
         this.algo = algo;
         this.finished = false;
         this.afterFunc = afterFunc;
+        this.rate = rate;
     }
 
     step(){
         if(!this.finished){
             if(this.t < 1){
+                this.t += this.rate; 
                 const fixedT = this.algo(this.t);
                 // lerp the values
                 const v = lerp(this.start, this.end, fixedT);
@@ -60,7 +69,8 @@ class TWEEN {
                 this.func(v, fixedT);
                 // use a built in or user defined function to modify t
                 // example ease in, elastic, constantRate, whatever else i add
-                this.t += 0.01; 
+
+                
             }else if(!this.finished){
                 this.finished = true;
                 if(typeof this.afterFunc === "function"){
@@ -72,7 +82,6 @@ class TWEEN {
 
     }
 }
-
 // tween function
 // credit to simon dev for most of the math: https://www.youtube.com/watch?v=YJB1QnEmlTs
 function constantSpeed(t){
