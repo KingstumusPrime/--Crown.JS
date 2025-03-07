@@ -36,8 +36,20 @@ const i = new InputController();
 ```
 const game = new Game(canvas, ctx, i);
 ```
+* Now you need to call the games update methoud in a loop like like this:
+```
+function update(){
+    game.update();
+    window.requestAnimationFrame(update);
+}
+```
+* From there you can set up a input system with onKeyPressed() and onKeyPressedRepeat(). Or you could try to set up your game world with addActor() and addStaticActor()
 
-## Building
+## Example Projects
+### Inversion: 
+Originally created in [Scratch](https://scratch.mit.edu/projects/571692328/) and featured on the news by Hour Of Code. It is definitely the best example project to start with and probably the cleanest.
+
+## Documentation
 
 In order to build this project you will first need the custom GCC toolchain found in the releases of this repo here [RealOS Custom toolchain](https://github.com/KingstumusPrime/RealOs-Custom-Toolchain/releases/tag/Release). After that you need to run:
 ```
