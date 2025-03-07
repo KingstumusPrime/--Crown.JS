@@ -23,20 +23,26 @@ const jump = new Sound("./assets/jump.wav");
 const oops = new Sound("./assets/Oops.wav")
 const end = new Sound("./assets/End.wav", true)
 
-
+// start playing the theme song
 themeSong.play();
 
+// init the game
 const game = new Game(canvas, ctx, i);
+// add a static actor with the name helloAStaticWorld, a sprite with the ground image and a dynamic scale, a position of x:window.innerWidth * -0.005, y: canvas.height - 129
 let ground = game.addStaticActor("helloAStaticWorld", new Sprite("./assets/ground.svg", {x:window.innerWidth * 1.01, y: 129}), {x:window.innerWidth * -0.005, y: canvas.height - 129});
 
+// create a dynamic actor for the player because it needs to move
 const player = game.addActor("helloWorld", new Sprite("./assets/player.svg", {x:80, y: 80}));
+
 player.onCreate(()=>{
+    // see how you can add custom properties to the player without any extra functionality
     player.vx = 0;
     player.vy = 0;
     player.onGround = false;
     player.pos.x += 256;
 })
 
+// get the HTML elements used for the UI
 const scoreDiv = document.querySelector("#score");
 const menu = document.querySelector("#mainMenu");
 const playAgain = document.querySelector("#playAgain");
@@ -45,7 +51,7 @@ const scoreText = document.querySelector("#finScore");
 
 
 
-// create score
+// create score as a pointer meaning it can function like a normal variable but it will call the update functon every time it changes
 addPointer("score", 0, function(val) {
     scoreDiv.innerText = numWithLength(val, 3);
     if(score%5 == 0 && score > 0){
@@ -66,8 +72,8 @@ addPointer("invert", false, function(val) {
 
 
 
-console.log(playAgain)
 playAgain.onclick = function(){
+    // playe the sound three times then restart the game
     new Sound("./assets/Coin.wav", false).play();
     setTimeout(() => {
         new Sound("./assets/Coin.wav", false).play();
@@ -97,7 +103,7 @@ playAgain.onclick = function(){
 
 let gameOver = false;
 
-// player code
+// player code. Will be called every frame
 player.onUpdate = () => {
     player.pos.y += player.vy;
     player.onGround = actorsCollides(player, ground)
@@ -128,6 +134,7 @@ player.onUpdate = () => {
     });
 }
 
+// example of using input to get key pressed. You can also use game.input instead of using i
 i.onKeyPressedRepeat("space", () => {
     if(player.onGround){
         player.vy = -20;
@@ -136,6 +143,7 @@ i.onKeyPressedRepeat("space", () => {
 
 })
 
+// game to onKeyPressed repeat makes the function called every frame the keys down
 i.onKeyPressedRepeat("w", () => {
     game.camera.target.y -= 10;
 })
@@ -153,8 +161,10 @@ i.onKeyPressedRepeat("d", () => {
 i.onKeyPressedRepeat("z", () => {
     game.camera.shake(Math.random() * 100);
 })
+
 const carNames = ["board", "car", "cool car", "unicycle"];
 function addCar(){
+    // the groups property allows us to call getGroup("cars")
     const myCar = game.addActor("car" + Math.random(), new Sprite(`./assets/cars/${randFromArr(carNames)}${invert ? " inverted" : ''}.svg`),  {group: "cars"});
     myCar.onSpriteLoaded = () => {
         myCar.scaleBy(1.3);
