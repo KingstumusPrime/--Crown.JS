@@ -1,3 +1,8 @@
+// === Inversion ==
+// Created by Kingston James
+// a basic recreation of my Scratch game that got on the news a while back: https://scratch.mit.edu/projects/571692328/
+
+
 // WISHILIST
 // one include to rule them all!
 // streamline the update function
