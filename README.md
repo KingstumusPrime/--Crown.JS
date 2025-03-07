@@ -74,5 +74,12 @@ class Game(HTMLCanvas canvas, HTMLCanvasContexet2d ctx, [InputController]() inpu
 * offScreenCanvas : the canvas that static actors are drawn to. Created with the Game object
 * offCtx : the ctx of game.offScreenCanvas
 * input : the [InputController]() passed to the game
-* camera : The [Camera]() object for the game. Created with the Game object 
+* camera : The [Camera]() object for the game. Created with the Game object
+
+#### Methouds
+##### addActor
+Add Actor creates a new actor and automatically will start rendering it. Extra parameters can be passed through params such as: Bool "bottom" (renders sprite below others) and String "group" (sets the group for that actor) 
+```
+addActor(String name, [Sprite]() sprite, Object params={})
+```
 
