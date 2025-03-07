@@ -301,3 +301,23 @@ Shakes the camera
 ```
 void shake(double strength)
 ```
+
+### The Sound object
+
+The Camera Object is automatically created by the [game]() and can be accessed through game.camera
+
+#### properties
+* pos : a read-only [Vector Object]() that shows the current position of the camera
+* target : a [Vector Object]() that holds the target that the camera will move towards
+* dampening : how fast the shaking stops (default 3)
+* drag : how fast the camera moves towards the target (default 0.3)
+* culling : boolean of whether the camera will hide actors outside the view of the camera
+
+#### Methods
+
+#### shake
+Shakes the camera
+```
+void shake(double strength)
+```
+
