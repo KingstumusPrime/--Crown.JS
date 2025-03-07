@@ -1,4 +1,3 @@
-// game holds the whole world and updates everything
 class Game {
     constructor(canvas, ctx, input){
         this.canvas = canvas;
@@ -27,7 +26,12 @@ class Game {
 
     addActor(name, sprite, params={}){
         const act = new Actor(name, sprite, this.ctx);
-        this.updaters.push(act);
+        if("bottom" in params && params["bottom"] == true){
+            this.updaters.unshift(act);
+        }else{
+            this.updaters.push(act);
+        }
+
         this.objMap[name] = act;
         if("group" in params){
             this.addToGroup(params["group"], act);
@@ -40,8 +44,14 @@ class Game {
         const act = new Actor(name, sprite, this.ctx);
         act.pos = pos;
         this.objMap[name] = act;
-        if(sprite.img !== undefined){
+
+        if(sprite.img !== undefined && sprite.loaded == false){
+            let prev = sprite.img.onload;
             sprite.img.onload = () => {
+                if(prev){
+                    prev();
+                }
+                
                 act.sprite.render(this.offCtx, act.pos, act.scale);
             }
         }else{
@@ -68,7 +78,7 @@ class Game {
         this.input.update();
         // update the camera
         this.camera.update();
-
+        this.ctx.drawImage(this.offScreenCanvas, -this.camera.pos.x, -this.camera.pos.y);
         // render all the static objects
         this.tweenList.forEach((tween, i) => {
             tween.step();
@@ -76,7 +86,7 @@ class Game {
                 delete this.tweenList[i];
             }
         }) 
-        this.ctx.drawImage(this.offScreenCanvas, -this.camera.pos.x, -this.camera.pos.y);
+
         this.updaters.forEach((updater => {
             if(updater.sprite.loaded != false){
                 updater.update(this.camera);
@@ -118,7 +128,7 @@ class Game {
         return this.groupMap[name] != undefined ? this.groupMap[name] : [];
     }
     
-    addTween(start, end, func, algo, endfunc){
-        this.tweenList.push(new TWEEN(start, end, func, algo, endfunc));
+    addTween(start, end, func, algo, endfunc, speed){
+        this.tweenList.push(new TWEEN(start, end, func, algo, endfunc, speed));
     }
 }
