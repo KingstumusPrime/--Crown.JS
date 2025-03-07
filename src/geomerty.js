@@ -16,12 +16,12 @@ class BoxGeometry {
 }
 
 class RectGeometry {
-    constructor(x, y){
+    constructor(x, y, color="black"){
         this.loaded = true;
         this.opacity = 1;
         this.scale = {x: x, y:y};
         this.rot = 0;
-        this.color = "black";
+        this.color = color;
     }
 
     render(ctx, pos){
@@ -54,7 +54,6 @@ class Line{
         ctx.globalAlpha = this.opacity;
         ctx.fillStyle = this.color;
         ctx.beginPath();
-        ctx.moveTo(pos.x, pos.y);
         console.log(this.rot);
         const angle = this.rot*Math.PI/180;
         this.start = pos;
@@ -64,6 +63,28 @@ class Line{
         ctx.restore();
     }
 }
+class CircleGeometry {
+    constructor(scale, color="black"){
+        this.loaded = true;
+        this.opacity = 1;
+        this.scale = {x: scale, y:scale};
+        this.color = color;
+    }
+
+    render(ctx, pos){
+        
+        ctx.save();
+        ctx.globalAlpha = this.opacity;
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.translate(pos.x + this.scale.x/2, pos.y + this.scale.y/2);
+        ctx.arc(0, 0, this.scale.x/2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        ctx.restore();
+    }
+}
+
 
 class Sprite {
     constructor(src, scale={x:0,y:0}){
@@ -71,6 +92,7 @@ class Sprite {
         this.img.src = src;
         this.scale = scale;
         this.opacity = 1;
+        this.rot = 0;
         this.loaded = false;
         this.img.addEventListener('load', () => {
             if(this.scale.x == 0 || this.scale.y == 0){
@@ -83,9 +105,21 @@ class Sprite {
     }
 
     render(ctx, pos){
+        ctx.save();
         ctx.globalAlpha = this.opacity;
-        ctx.drawImage(this.img, pos.x, pos.y, this.scale.x, this.scale.y);
+        ctx.fillStyle = this.color;
+    
+        // Translate to the center of the image
+        ctx.translate(pos.x + this.scale.x / 2, pos.y + this.scale.y / 2);
+    
+        // Rotate around the center
+        ctx.rotate(this.rot * Math.PI / 180);
+    
+        // Draw the image, offsetting by half the width and height
+        ctx.drawImage(this.img, -this.scale.x / 2, -this.scale.y / 2, this.scale.x, this.scale.y);
+    
         ctx.globalAlpha = 1;
+        ctx.restore();
     }
 
     // used to update actors when the image loads
