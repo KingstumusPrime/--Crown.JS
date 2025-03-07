@@ -80,6 +80,65 @@ class Game(HTMLCanvas canvas, HTMLCanvasContexet2d ctx, [InputController]() inpu
 ##### addActor
 Add Actor creates a new actor and automatically will start rendering it. Extra parameters can be passed through params such as: Bool "bottom" (renders sprite below others) and String "group" (sets the group for that actor) 
 ```
-addActor(String name, [Sprite]() sprite, Object params={})
+void addActor(String name, [Sprite]() sprite, Object params={})
 ```
 
+#### addStaticActor
+Similar to add actor this draws the actor to the offScreenCanvas. It can be used for things like background images or other static things. 
+```
+void addStaticActor(String name, [Sprite]() sprite, [Vector Object]() pos, Object params={})
+```
+
+#### findActor
+Finds an actor by name
+```
+[Actor]() findActor(String name)
+```
+
+#### update
+The update function must be called every frame and is the foundatation for Crown.JS
+```
+void update()
+```
+
+##### destroy
+This function should be used to remove a actor from the game world
+```
+void destroy([Actor]() Object)
+```
+
+#### pauseInput
+pauseInput disables the game's input temporarily.  The sister function of resumeInput()
+```
+void pauseInput()
+```
+
+#### resumeInput
+resumeInput re-enables the game's input.  The sister function of pauseInput()
+```
+void resumesInput()
+```
+
+#### destroyGroup
+This function calls destroy() for every single actor in a group.
+```
+void destroyGroup(String group)
+```
+
+#### addToGroup
+This function allows you to add an actor to an existing group
+```
+void addToGroup(String group, [Actor]() actor)
+```
+
+#### getGroup
+This function allows you get every single actor in a group
+```
+[Actor]()[] getGroup(String name)
+```
+
+#### addTween
+Creates a [TWEEN]() that will be automatically updated. The recomended way to handle TWEENs
+```
+void addTween(double start, double end, [TWEEN algorithm]() algo, void function endFunc, double speed) 
+```
