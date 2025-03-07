@@ -3,6 +3,7 @@ class InputController {
         this.keyRepeatListeners = {};
         this.keyListeners = {};
         this.keys = {};
+        this.funcs = {};
         this.mouse = {x: 0, y: 0};
         this.mousePrev;
         this.prevKeys = null;
@@ -28,7 +29,19 @@ class InputController {
         }
         const e = new CustomEvent(key);
         document.addEventListener(key,func)
+        this.funcs[key] = func;
         this.keyListeners[key] = e;
+    }
+
+    clearKey(key){
+        document.removeEventListener(key, this.funcs[key]);
+        this.keyListeners[key] = null;
+    }
+    clearKeys(keys){
+        keys.forEach((key)=>{
+            this.clearKey(key);
+        })
+
     }
 
     onKeyPressedRepeat(key, func){
@@ -46,7 +59,7 @@ class InputController {
 
     onkeyDown(e){
         this.keys[e.key] = true;
-        if(this.keys[e.key] && !this.prevKeys[e.key] && !this.paused){
+        if(this.keys[e.key] && !this.prevKeys[e.key] && !this.paused && !CROWN_DISABLE_INPUT){
             if(this.keyListeners[e.key] != null){
                 document.dispatchEvent(this.keyListeners[e.key]);
             }
@@ -54,11 +67,12 @@ class InputController {
     }
 
     update(){
+        if(this.paused){return;}
         this.prevKeys = {...this.keys};
         this.mousePrev = {...this.mouse};
         Object.keys(this.keyRepeatListeners).forEach(key => {
             // fire repeat events
-            if(this.keyRepeatListeners[key] != null && this.keys[key] && !this.paused){
+            if(this.keyRepeatListeners[key] != null && this.keys[key] && !this.paused && !CROWN_DISABLE_INPUT){
                 document.dispatchEvent(this.keyRepeatListeners[key]);
             }
         })
