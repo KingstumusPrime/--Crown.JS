@@ -36,7 +36,7 @@ const i = new InputController();
 ```
 const game = new Game(canvas, ctx, i);
 ```
-* Now you need to call the games update methoud in a loop like like this:
+* Now you need to call the games update method in a loop like like this:
 ```
 function update(){
     game.update();
@@ -78,7 +78,7 @@ The Game object is the foundatation for Crown.JS and mainly exists to render and
 * input : the [InputController]() passed to the game
 * camera : The [Camera]() object for the game. Created with the Game object
 
-#### Methouds
+#### Methods
 ##### addActor
 Add Actor creates a new actor and automatically will start rendering it. Extra parameters can be passed through params such as: Bool "bottom" (renders sprite below others) and String "group" (sets the group for that actor) 
 ```
@@ -159,7 +159,7 @@ The actor represents a [Sprite]() with a position and scale. It should not be cr
 * scale : a [Vector Object]() with x and y properties
 * culled : this value is read-only and can be used to tell if the actor is being rendered
 
-#### Methouds
+#### Methods
 
 #### scaleBy
 scales the sprite by n times. Good because it updates both the sprites scale and the scale used for collisions 
@@ -182,3 +182,41 @@ This function in f will be called instantally and is more for looks than anythin
 ```
 onCreate(function f)
 ```
+
+### The Sprite Object
+
+The Sprite object is not technically an object instead it is defined by having a render function.
+#### properties
+* loaded : a boolean value of whether or not its loaded
+* opacity : the opacity of the sprite
+* scale : the scale of the sprite. Should match with the actor for proper collision
+
+#### varations
+
+#### BoxGeometry
+```
+BoxGeometry(double scale, String color="black")
+```
+##### extra properties:
+* color : a string the color
+
+#### RectGeometry
+```
+RectGeometry(double x, double y, String color="black")
+```
+##### extra properties:
+* color : a string the color
+* rot : the rotatation of the rect
+
+#### Line
+```
+Line(double length, double width)
+```
+##### extra properties:
+* color : a string the boxs color (default black)
+* end : the end of the line (stored as a [Vector Object]())
+* start : the start of the line (stored as a [Vector Object]())
+* rot : the rotation of the line
+* length : length of a line
+* width : width of a line
+
