@@ -234,3 +234,50 @@ Sprite(String src, Vector Object scale)
 ##### extra properties:
 * img : the image object tied to the sprite
 * rot : the rotatation of the sprite
+
+### The InputController
+
+class InputController()
+
+The input controller is meant to handle keyboard and mouse controls in your project
+
+#### properties
+* paused : a boolean value of whether the input will trigger events
+* mouse : a vector object of the mouse
+
+#### Methods
+
+#### onMouseDown
+the function f will be called every click
+```
+void onMouseDown(function f) 
+```
+
+#### onMouseMove
+A function meant to be overridden. Called every time the mouse moves
+```
+void onMouseMove()
+```
+
+#### onKeyPressed
+Creates a an event and calls the function f every time the key gets pressed
+```
+void onKeyPressed(String key, function f)
+```
+
+#### onKeyPressedRepeat
+Creates a an event and calls the function f every frame where the key is down
+```
+void onKeyPressedRepeat(String key, function f)
+```
+
+#### clearKey
+Removes the keypress event tied to the key
+```
+void clearKey(String key)
+```
+#### clearKeys
+Calls clearKey() for an array of keys
+```
+void clearKeys(String[] keys)
+```
