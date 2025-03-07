@@ -8,6 +8,7 @@ class Camera {
         this.target = {x: 0, y: 0};
         this.excel = {x: 0, y: 0};
         this.drag = 0.3;
+        this.culling = true;
     }
 
     update(){
