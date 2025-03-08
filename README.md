@@ -18,11 +18,11 @@ I went through a phase of creating tons of little canvas games in JavaScript. I 
 
 ## Getting Started
 
-This is one easy header just take the crown.js file from the root directory and add it to your project.
+Crown.JS is stored in one simple header this means you just need to drag the header and include it in your HTML file right before your game scripts.
 
 ### Learning guide
 
-The quickest way to get started is to read the [documentation]() or take a look at the [sample projects]()
+The quickest way to get started is to read the [documentation](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#documentation) or take a look at the [sample projects](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#example-projects)
 
 ### Quickstart
 
@@ -60,11 +60,11 @@ A little test put together to push Crown.JS to its limits. With completly dynami
 
 ## Documentation
 
-This documentation was created to outline Crown.JS and all of its features. This is more of a reference guide. If you are looking to quick start look at [getting started]() or [example projects]().
+This documentation was created to outline Crown.JS and all of its features. This is more of a reference guide. If you are looking to quick start look at [getting started](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#getting-started) or [example projects](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#example-projects).
 
 ### The Game Object
 
-class Game(HTMLCanvas canvas, CanvasContext2d ctx, [InputController]() input)
+class Game(HTMLCanvas canvas, CanvasContext2d ctx, [InputController](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#the-inputcontroller) input)
 
 The Game object is the foundatation for Crown.JS and mainly exists to render and create actors.
 
@@ -147,13 +147,13 @@ void addTween(double start, double end, TWEENAlgorithm algo, void function endFu
 
 ### The Actor Object
 
-class Actor(String name, [Sprite]() sprite, CanvasContext2d ctx)
+class Actor(String name, [Sprite](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#the-sprite-object) sprite, CanvasContext2d ctx)
 
-The actor represents a [Sprite]() with a position and scale. It should not be created without using [addActor]()
+The actor represents a [Sprite](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#the-sprite-object) with a position and scale. It should not be created without using [addActor](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#addactor)
 
 #### properties
 * name : the name of the sprite
-* sprite : the [Sprite]() tied to this actor
+* sprite : the [Sprite](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#the-sprite-object) tied to this actor
 * pos : a [vectorObject](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object) with x and y properties
 * rot : the rotation of the actor
 * scale : a [vectorObject](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object) with x and y properties
@@ -285,7 +285,7 @@ void clearKeys(String[] keys)
 
 ### The Camera object
 
-The Camera Object is automatically created by the [game]() and can be accessed through game.camera
+The Camera Object is automatically created by the [game](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#the-game-object) and can be accessed through game.camera
 
 class Camera(Double startX, Double startY, HTMLCanvas canvas)
 
