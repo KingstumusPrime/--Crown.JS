@@ -304,20 +304,32 @@ void shake(double strength)
 
 ### The Sound object
 
-The Camera Object is automatically created by the [game]() and can be accessed through game.camera
+This object is pretty seperate from the rest of Crown.JS just made for playing sounds.
 
-#### properties
-* pos : a read-only [Vector Object]() that shows the current position of the camera
-* target : a [Vector Object]() that holds the target that the camera will move towards
-* dampening : how fast the shaking stops (default 3)
-* drag : how fast the camera moves towards the target (default 0.3)
-* culling : boolean of whether the camera will hide actors outside the view of the camera
+class Sound(String src, Boolean loop=false, function onFinished=undefined)
 
 #### Methods
 
-#### shake
-Shakes the camera
+#### play
+Starts playing the sound
 ```
-void shake(double strength)
+void play()
 ```
 
+#### pause
+Stops the sound. Has the option to restart it
+```
+void pause(Boolean restart=false)
+```
+### Utilities
+A collection of functions in utils.js. Seperate from the rest of Crown.JS but just as useful
+
+#### Vector Object
+The vector object is used by Crown.JS to comunicate scale and position. This means you cannot call actor.x instead actor.pos.x. Same thing with width and height. It simply is a standard Javascript object defined like this:
+```
+vectorObject = {double x, double y}
+```
+#### CROWN_RANDOM_FUNC 
+This is a constant function pointer that allows the user to override the random function. Useful for seeded random or coordinating random values across a server Defaults to Math.random
+
+####
