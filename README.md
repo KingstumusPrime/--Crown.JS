@@ -88,7 +88,7 @@ void addActor(String name, Sprite sprite, Object params={})
 #### addStaticActor
 Similar to add actor this draws the actor to the offScreenCanvas. It can be used for things like background images or other static things. 
 ```
-void addStaticActor(String name, Sprite sprite, [Vector Object](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object) pos, Object params={})
+void addStaticActor(String name, Sprite sprite, vectorObject pos, Object params={})
 ```
 
 #### findActor
@@ -154,9 +154,9 @@ The actor represents a [Sprite]() with a position and scale. It should not be cr
 #### properties
 * name : the name of the sprite
 * sprite : the [Sprite]() tied to this actor
-* pos : a [Vector Object](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object) with x and y properties
+* pos : a [vectorObject](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object) with x and y properties
 * rot : the rotation of the actor
-* scale : a [Vector Object](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object) with x and y properties
+* scale : a [vectorObject](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object) with x and y properties
 * culled : this value is read-only and can be used to tell if the actor is being rendered
 
 #### Methods
@@ -214,8 +214,8 @@ Line(double length, double width)
 ```
 ##### extra properties:
 * color : a string the lines color (default black)
-* end : the end of the line (stored as a [Vector Object](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object))
-* start : the start of the line (stored as a [Vector Object](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object))
+* end : the end of the line (stored as a [vectorObject](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object))
+* start : the start of the line (stored as a [vectorObject](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object))
 * rot : the rotation of the line
 * length : length of a line
 * width : width of a line
@@ -229,7 +229,7 @@ CircleGeometry(double scale, String color="black")
 
 #### Sprite
 ```
-Sprite(String src, Vector Object scale)
+Sprite(String src, vectorObject scale)
 ```
 ##### extra properties:
 * img : the image object tied to the sprite
@@ -243,7 +243,7 @@ The input controller is meant to handle keyboard and mouse controls in your proj
 
 #### properties
 * paused : a boolean value of whether the input will trigger events
-* mouse : a vector object of the mouse
+* mouse : a vectorObject of the mouse
 
 #### Methods
 
@@ -288,8 +288,8 @@ void clearKeys(String[] keys)
 The Camera Object is automatically created by the [game]() and can be accessed through game.camera
 
 #### properties
-* pos : a read-only [Vector Object](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object) that shows the current position of the camera
-* target : a [Vector Object](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object) that holds the target that the camera will move towards
+* pos : a read-only [vectorObject](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object) that shows the current position of the camera
+* target : a [vectorObject](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object) that holds the target that the camera will move towards
 * dampening : how fast the shaking stops (default 3)
 * drag : how fast the camera moves towards the target (default 0.3)
 * culling : boolean of whether the camera will hide actors outside the view of the camera
@@ -324,12 +324,59 @@ void pause(Boolean restart=false)
 ### Utilities
 A collection of functions in utils.js. Seperate from the rest of Crown.JS but just as useful
 
-#### Vector Object
-The vector object is used by Crown.JS to comunicate scale and position. This means you cannot call actor.x instead actor.pos.x. Same thing with width and height. It simply is a standard Javascript object defined like this:
+#### vectorObject
+The vectorObject is used by Crown.JS to comunicate scale and position. This means you cannot call actor.x instead actor.pos.x. Same thing with width and height. It simply is a standard Javascript object defined like this:
 ```
 vectorObject = {double x, double y}
 ```
 #### CROWN_RANDOM_FUNC 
 This is a constant function pointer that allows the user to override the random function. Useful for seeded random or coordinating random values across a server Defaults to Math.random
 
-####
+#### actorsCollide
+Checks if two actors collide. This uses the scale property of the actor not its sprite.
+```
+Boolean actorsCollide(Actor act1, Actor act2)
+```
+
+#### VecSub
+Subtracts two [vectorObjects](https://github.com/KingstumusPrime/--Crown.JS?tab=readme-ov-file#vector-object) and returns a new one
+```
+vectorObject VecSub(vectorObject a, vectorObject b)
+```
+
+#### randFromArr
+Gets a random element from an array. Uses [CROWN_RANDOM_FUNC](https://github.com/KingstumusPrime/--Crown.JS?tab=readme-ov-file#crown_random_func)
+```
+typeof(arr[0]) randFromArr(Array arr)
+```
+
+#### randInRange
+Get a random Integer in the range of min (inclusive) and max (exclusive). Uses [CROWN_RANDOM_FUNC](https://github.com/KingstumusPrime/--Crown.JS?tab=readme-ov-file#crown_random_func)
+```
+Integer randInRange(Integer min, Integer max)
+```
+
+#### randFloatInRange
+Same as randInRange but uses a Float instead. Uses [CROWN_RANDOM_FUNC](https://github.com/KingstumusPrime/--Crown.JS?tab=readme-ov-file#crown_random_func)
+```
+Double randFloatInRange(Double x, Double y)
+```
+
+#### addPointer
+An odd name for a function as its not a conventional pointer. Instead its a variable that gets added to the window with a custom getter/setter. This new global variable can be used just like any. So this means code like this: 
+```
+addPointer("x", 10, ()=>{alert("hello)})
+```
+Will create a new variable x and set it to 10. Think of it as being the equivlent of:
+```
+var x = 10;
+function changeX(v){
+  x = v;
+  alert("hello");
+}
+changeX(10);
+```
+The calling convention for this function is:
+```
+void addPointer(String name, any value, function onChange)
+```
