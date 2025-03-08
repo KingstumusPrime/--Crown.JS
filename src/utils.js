@@ -1,6 +1,6 @@
 let CROWN_RANDOM_FUNC = Math.random;
 
-function actorsCollides(act1, act2){
+function actorsCollide(act1, act2){
     return act1.pos.y + act1.scale.y > act2.pos.y && act1.pos.y < act2.pos.y + act2.scale.y
     && act1.pos.x + act1.scale.x > act2.pos.x && act1.pos.x < act2.pos.x + act2.scale.x;
 }
