@@ -71,12 +71,12 @@ The Game object is the foundatation for Crown.JS and mainly exists to render and
 #### properties
 * canvas : the canvas passed too the constructor
 * ctx : the ctx pass too the constructor
-* tweenList : a list of all active [TWEENs]()
+* tweenList : a list of all active [TWEENs](https://github.com/KingstumusPrime/--Crown.JS?tab=readme-ov-file#the-tween-object)
 * backgroundColor : A string that defines the background color of the canvas
 * offScreenCanvas : the canvas that static actors are drawn to. Created with the Game object
 * offCtx : the ctx of game.offScreenCanvas
-* input : the [InputController]() passed to the game
-* camera : The [Camera]() object for the game. Created with the Game object
+* input : the [InputController](https://github.com/KingstumusPrime/--Crown.JS?tab=readme-ov-file#the-tween-object) passed to the game
+* camera : The [Camera](https://github.com/KingstumusPrime/--Crown.JS?tab=readme-ov-file#the-tween-object) object for the game. Created with the Game object
 
 #### Methods
 ##### addActor
@@ -140,9 +140,9 @@ Actor[] getGroup(String name)
 ```
 
 #### addTween
-Creates a [TWEEN]() that will be automatically updated. The recomended way to handle TWEENs
+Creates a [TWEEN](https://github.com/KingstumusPrime/--Crown.JS?tab=readme-ov-file#the-tween-object) that will be automatically updated. The recomended way to handle TWEENs
 ```
-void addTween(double start, double end, TWEEN algorithm() algo, void function endFunc, double speed) 
+void addTween(double start, double end, TWEENAlgorithm algo, void function endFunc, double speed) 
 ```
 
 ### The Actor Object
@@ -287,6 +287,8 @@ void clearKeys(String[] keys)
 
 The Camera Object is automatically created by the [game]() and can be accessed through game.camera
 
+class Camera(Double startX, Double startY, HTMLCanvas canvas)
+
 #### properties
 * pos : a read-only [vectorObject](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object) that shows the current position of the camera
 * target : a [vectorObject](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object) that holds the target that the camera will move towards
@@ -397,4 +399,39 @@ Double lerp(Double a, Double b, Double t)
 #### The TWEEN object
 The tween object contains all of the logic behind the [addTween()](https://github.com/KingstumusPrime/--Crown.JS?tab=readme-ov-file#addtween) function. One should not manually create TWEENs but it can be useful to know excatly how they work.
 
-class TWEEN(Double start, Double end, function f, )
+class TWEEN(Double start, Double end, function f, TWEENAlgorithm algo, function endFunc=unefined, double speed=0.01)
+
+#### properties
+* t : the current time
+* rate : the speed of the TWEEN passed through the speed parameter
+
+#### Methouds
+
+#### step
+called to step the TWEEN forward by one. 
+```
+void step()
+```
+
+#### TWEEN Algorithms
+TWEEN algorithms are a set of functions that all take in the value of t and returns a new value. They can be used to modify the behavior of a TWEEN. It is recomended you use the [grapher.js](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#grapherjs) example to see how they behave.
+
+* constantSpeed : returns t
+* squared : returns t * t
+* easeInCubic : returns t * t * t
+* squareRoot : returns sqrt(t)
+* quadEaseOut : returns  1 - (1 - t) * (1 - t)
+* parabola : converts t into a parabola type shape
+* triangle : goes in a triangle
+* elasticOut : Math.sin(-13 * (t + 1) * (Math.PI/2)) * Math.pow(2, -10 * t) + 1
+* bounceOut : has t bounce at the end
+* smoothstep : the smoothstep function
+* easeOutQuint : ease out
+* easeInBounce : bounce is at the start instead of end
+* elasticIn : equivelent of easeInBounce but with elasticOut
+
+If you wish to create your own TWEEN algorithm make sure the prototype looks like this:
+```
+double customAlgo(double t)
+```
+After that just pass it to [addTween()](https://github.com/KingstumusPrime/--Crown.JS?tab=readme-ov-file#addtween)
