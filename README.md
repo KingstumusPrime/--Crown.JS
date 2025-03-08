@@ -71,7 +71,7 @@ The Game object is the foundatation for Crown.JS and mainly exists to render and
 #### properties
 * canvas : the canvas passed too the constructor
 * ctx : the ctx pass too the constructor
-* tweenList : a list of all active tweens
+* tweenList : a list of all active [TWEENs]()
 * backgroundColor : A string that defines the background color of the canvas
 * offScreenCanvas : the canvas that static actors are drawn to. Created with the Game object
 * offCtx : the ctx of game.offScreenCanvas
@@ -366,6 +366,7 @@ Double randFloatInRange(Double x, Double y)
 An odd name for a function as its not a conventional pointer. Instead its a variable that gets added to the window with a custom getter/setter. This new global variable can be used just like any. So this means code like this: 
 ```
 addPointer("x", 10, ()=>{alert("hello)})
+x = 10 // alerts hello
 ```
 Will create a new variable x and set it to 10. Think of it as being the equivlent of:
 ```
@@ -374,9 +375,26 @@ function changeX(v){
   x = v;
   alert("hello");
 }
-changeX(10);
+changeX(10); // alerts hello
 ```
 The calling convention for this function is:
 ```
 void addPointer(String name, any value, function onChange)
 ```
+
+#### numWithLength
+Formats a number so that is is an n character string
+```
+String numWithLength(Integer num, Integer n)
+```
+
+#### lerp
+Basic linear interpolation function.
+```
+Double lerp(Double a, Double b, Double t)
+```
+
+#### The TWEEN object
+The tween object contains all of the logic behind the [addTween()](https://github.com/KingstumusPrime/--Crown.JS?tab=readme-ov-file#addtween) function. One should not manually create TWEENs but it can be useful to know excatly how they work.
+
+class TWEEN(Double start, Double end, function f, )
