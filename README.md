@@ -88,7 +88,7 @@ void addActor(String name, Sprite sprite, Object params={})
 #### addStaticActor
 Similar to add actor this draws the actor to the offScreenCanvas. It can be used for things like background images or other static things. 
 ```
-void addStaticActor(String name, Sprite sprite, [Vector Object]() pos, Object params={})
+void addStaticActor(String name, Sprite sprite, [Vector Object](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object) pos, Object params={})
 ```
 
 #### findActor
@@ -154,9 +154,9 @@ The actor represents a [Sprite]() with a position and scale. It should not be cr
 #### properties
 * name : the name of the sprite
 * sprite : the [Sprite]() tied to this actor
-* pos : a [Vector Object]() with x and y properties
+* pos : a [Vector Object](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object) with x and y properties
 * rot : the rotation of the actor
-* scale : a [Vector Object]() with x and y properties
+* scale : a [Vector Object](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object) with x and y properties
 * culled : this value is read-only and can be used to tell if the actor is being rendered
 
 #### Methods
@@ -214,8 +214,8 @@ Line(double length, double width)
 ```
 ##### extra properties:
 * color : a string the lines color (default black)
-* end : the end of the line (stored as a [Vector Object]())
-* start : the start of the line (stored as a [Vector Object]())
+* end : the end of the line (stored as a [Vector Object](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object))
+* start : the start of the line (stored as a [Vector Object](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object))
 * rot : the rotation of the line
 * length : length of a line
 * width : width of a line
@@ -288,8 +288,8 @@ void clearKeys(String[] keys)
 The Camera Object is automatically created by the [game]() and can be accessed through game.camera
 
 #### properties
-* pos : a read-only [Vector Object]() that shows the current position of the camera
-* target : a [Vector Object]() that holds the target that the camera will move towards
+* pos : a read-only [Vector Object](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object) that shows the current position of the camera
+* target : a [Vector Object](https://github.com/KingstumusPrime/--Crown.JS/tree/main?tab=readme-ov-file#vector-object) that holds the target that the camera will move towards
 * dampening : how fast the shaking stops (default 3)
 * drag : how fast the camera moves towards the target (default 0.3)
 * culling : boolean of whether the camera will hide actors outside the view of the camera
