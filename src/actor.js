@@ -22,7 +22,7 @@ class Actor {
 
     // for the user to fill out
     update(cam){
-        if(actorsCollides(this, cam) || (cam.culling == false)){
+        if(actorsCollide(this, cam) || (cam.culling == false)){
             this.culled = false;
             this.ctx.save();
             this.ctx.setTransform(this.sprSz.x, 0, 0, this.sprSz.y, ((this.pos.x - cam.pos.x)+ this.scale.x/2) * (1 - this.sprSz.x), ((this.pos.y - cam.pos.y) + this.scale.y/2) * (1 - this.sprSz.y));
