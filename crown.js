@@ -22,7 +22,7 @@ class Actor {
 
     // for the user to fill out
     update(cam){
-        if(actorsCollides(this, cam) || (cam.culling == false)){
+        if(actorsCollide(this, cam) || (cam.culling == false)){
             this.culled = false;
             this.ctx.save();
             this.ctx.setTransform(this.sprSz.x, 0, 0, this.sprSz.y, ((this.pos.x - cam.pos.x)+ this.scale.x/2) * (1 - this.sprSz.x), ((this.pos.y - cam.pos.y) + this.scale.y/2) * (1 - this.sprSz.y));
@@ -482,7 +482,7 @@ class InputController {
 
 let CROWN_RANDOM_FUNC = Math.random;
 
-function actorsCollides(act1, act2){
+function actorsCollide(act1, act2){
     return act1.pos.y + act1.scale.y > act2.pos.y && act1.pos.y < act2.pos.y + act2.scale.y
     && act1.pos.x + act1.scale.x > act2.pos.x && act1.pos.x < act2.pos.x + act2.scale.x;
 }
