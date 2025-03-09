@@ -15,6 +15,7 @@ I went through a phase of creating tons of little canvas games in JavaScript. I 
 * Culling of objects outside the camera
 * Support for "static" objects that are only drawn one time
 * Easy handling of JavaScripts and more tedious things such as initialization or rendering. 
+* Bonus: Wrapper for [peer.js](https://peerjs.com/) for easy multiplayer.
 
 ## Getting Started
 
@@ -435,3 +436,43 @@ If you wish to create your own TWEEN algorithm make sure the prototype looks lik
 double customAlgo(double t)
 ```
 After that just pass it to [addTween()](https://github.com/KingstumusPrime/--Crown.JS?tab=readme-ov-file#addtween)
+
+### BONUS Multiplayer
+in order too add multiplayer you need to include the client.js file into your project. After that you need to create a server. See the sample server also included in the /multiplayer folder. Once your servers up update the value of PEER_JS_SERVER_URL and PEER_JS_SERVER_NAME.
+
+#### The Client Class
+
+This is the building block for multiplayer. To create one simply call:
+```
+const client = new Client()
+```
+Now that you have that the client you need to fill out a couple of function:
+```
+// cid is the id of the client who disconnected
+client.onClientDisconnect = (cid) => {
+}
+
+// called when a new client joins. Has a peer.js client object
+client.onConnect = (conn) => {
+}
+
+// called when the client loads. formatted as an object where the keys are the ids and values are peer.js client objects
+client.onCreate = (conns) => {
+}
+
+// d is whatever data is broadcasted
+client.handleData = (d) => {
+}
+```
+
+Once your client is set up you can then call:
+
+```
+await client.init();
+```
+then your done! To send data to the server simply call:
+
+```
+client.broadcastAll(String data, Boolean toSelf=false)
+```
+The toSelf parameter allows you to send the message to yourself
