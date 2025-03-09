@@ -24,7 +24,7 @@ class Client {
     async init(){
         return await new Promise(async (resolve, reject) => {
             this.peer = await new Peer('', {
-                host: 'PEER_JS_SERVER_NAME',
+                host: PEER_JS_SERVER_NAME,
                 port: '443',
                 path: '/myapp',
                 key: 'peerjs'
