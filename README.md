@@ -74,7 +74,7 @@ function update(){
 
 ### Inversion: 
 
-Originally created in [Scratch](https://scratch.mit.edu/projects/571692328/) and featured on the news by Hour Of Code. It is definitely the best example project to start with and probably the cleanest. It can be found in index.html and main.js
+Originally created in [Scratch](https://scratch.mit.edu/projects/571692328/) and featured on the news by Hour Of Code ([Press info](https://github.com/KingstumusPrime/Inversion/blob/main/README.md)). It is definitely the best example project to start with and probably the cleanest. It can be found in index.html and main.js
 
 ### grapher.js
 
